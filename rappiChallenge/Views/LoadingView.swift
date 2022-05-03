@@ -21,6 +21,7 @@ struct LoadingView: View {
                     Spacer()
                     ProgressView()
                         .progressViewStyle(.circular)
+                        .scaleEffect(2)
                     Spacer()
                 }
             } else if error != nil {

@@ -13,6 +13,7 @@ struct MovieListView: View {
     @ObservedObject private var upcomingState = MovieListState()
     @ObservedObject private var topRatedState = MovieListState()
     @ObservedObject private var popularState = MovieListState()
+    @ObservedObject var movieSearchState = MovieSearchState()
     
     var body: some View {
         NavigationView {
@@ -59,6 +60,7 @@ struct MovieListView: View {
                 
                 
             }
+            .searchable(text: self.$movieSearchState.query)
             .navigationBarTitle("The MovieDb")
         }
         .onAppear {

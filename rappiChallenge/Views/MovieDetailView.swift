@@ -120,9 +120,9 @@ struct MovieDetailListView: View {
                 }
             }
         }
-//        .sheet(item: self.$selectedTrailer) { trailer in
-//            SafariView(url: trailer.youtubeURL!)
-//        }
+        .sheet(item: self.$selectedTrailer) { trailer in
+            SafariView(url: trailer.youtubeURL!)
+        }
     }
 }
 
