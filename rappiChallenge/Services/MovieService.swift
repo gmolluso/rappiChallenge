@@ -1,25 +1,22 @@
 //
 //  MovieService.swift
-//  SwiftUIMovieDb
+//  rappiChallenge
 //
-//  Created by Alfian Losari on 23/05/20.
-//  Copyright © 2020 Alfian Losari. All rights reserved.
+//  Created by Gustavo Molluso on 03/05/2022.
 //
 
 import Foundation
 
 protocol MovieService {
     
-    func fetchMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<MovieResponse, MovieError>) -> ())
-    func fetchMovie(id: Int, completion: @escaping (Result<Movie, MovieError>) -> ())
-    func searchMovie(query: String, completion: @escaping (Result<MovieResponse, MovieError>) -> ())
+    func fetchMovies(from endpoint: MovieListEndpoint) async throws -> [Movie]
+    func fetchMovie(id: Int) async throws -> Movie
+    func searchMovie(query: String) async throws -> [Movie]
 }
 
 enum MovieListEndpoint: String, CaseIterable, Identifiable {
-    
     var id: String { rawValue }
     
-
     case upcoming = "upcoming"
     case topRated = "top_rated"
     case popular = "popular"

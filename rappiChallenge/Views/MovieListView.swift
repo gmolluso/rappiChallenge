@@ -1,73 +1,86 @@
 //
 //  MovieListView.swift
-//  SwiftUIMovieDB
+//  rappiChallenge
 //
-//  Created by Alfian Losari on 22/05/20.
-//  Copyright © 2020 Alfian Losari. All rights reserved.
+//  Created by Gustavo Molluso on 03/05/2022.
 //
 
 import SwiftUI
 
 struct MovieListView: View {
+    @ObservedObject private var upcomingState: MovieListState
+    @ObservedObject private var topRatedState: MovieListState
+    @ObservedObject private var popularState: MovieListState
+//    MARK: Search bar
+    @ObservedObject private var movieSearchState: MovieSearchState
     
-    @ObservedObject private var upcomingState = MovieListState()
-    @ObservedObject private var topRatedState = MovieListState()
-    @ObservedObject private var popularState = MovieListState()
-    @ObservedObject var movieSearchState = MovieSearchState()
+    init() {
+        self._upcomingState = ObservedObject(wrappedValue: MovieListState())
+        self._topRatedState = ObservedObject(wrappedValue: MovieListState())
+        self._popularState = ObservedObject(wrappedValue: MovieListState())
+        self._movieSearchState = ObservedObject(wrappedValue: MovieSearchState())
+    }
     
     var body: some View {
         NavigationView {
             List {
-               
                 Group {
                     if upcomingState.movies != nil {
-                        MoviePosterCarouselView(title: "Upcoming", movies: upcomingState.movies!)
+                        MovieThumbnailCarouselView(title: "Upcoming", movies: upcomingState.movies!, thumbnailType: .poster())
                     } else {
                         LoadingView(isLoading: self.upcomingState.isLoading, error: self.upcomingState.error) {
-                            self.upcomingState.loadMovies(with: .upcoming)
+                            Task {
+                                await self.upcomingState.loadMovies(with: .upcoming)
+                            }
                         }
                     }
                 }
                 .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
-                
+                .listRowSeparator(.hidden)
                 
                 Group {
                     if topRatedState.movies != nil {
-                        MovieBackdropCarouselView(title: "Top Rated", movies: topRatedState.movies!)
+                        MovieThumbnailCarouselView(title: "Top Rated", movies: topRatedState.movies!, thumbnailType: .backdrop)
                         
                     } else {
                         LoadingView(isLoading: self.topRatedState.isLoading, error: self.topRatedState.error) {
-                            self.topRatedState.loadMovies(with: .topRated)
+                            Task {
+                                await self.topRatedState.loadMovies(with: .topRated)
+                            }
                         }
                     }
-                    
-                    
                 }
                 .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+                .listRowSeparator(.hidden)
                 
                 Group {
                     if popularState.movies != nil {
-                        MovieBackdropCarouselView(title: "Popular", movies: popularState.movies!)
+                        MovieThumbnailCarouselView(title: "Popular", movies: popularState.movies!, thumbnailType: .backdrop)
                         
                     } else {
                         LoadingView(isLoading: self.popularState.isLoading, error: self.popularState.error) {
-                            self.popularState.loadMovies(with: .popular)
+                            Task {
+                                await self.popularState.loadMovies(with: .popular)
+                            }
+                            
                         }
                     }
                 }
                 .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 16, trailing: 0))
-                
-                
-                
+                .listRowSeparator(.hidden)
             }
             .searchable(text: self.$movieSearchState.query)
-            .navigationBarTitle("The MovieDb")
+            .listStyle(.plain)
+            .navigationBarTitle("Rappi Challenge")
         }
         .onAppear {
+            Task {
+                await self.upcomingState.loadMovies(with: .upcoming)
+                await self.topRatedState.loadMovies(with: .topRated)
+                await self.popularState.loadMovies(with: .popular)
+            }
            
-            self.upcomingState.loadMovies(with: .upcoming)
-            self.topRatedState.loadMovies(with: .topRated)
-            self.popularState.loadMovies(with: .popular)
+           
         }
         
     }

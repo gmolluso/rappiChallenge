@@ -12,6 +12,8 @@ struct ContentView: View {
         Text("Hello, world!")
             .padding()
 //        FIXME: Todas las clases States las podemos pasar a una unica con las 3 funciones
+//        FIXME: Cambiar Nombre
+//        FIXME: Cambiar fuentes y agregar algun overlay
     }
 }
 

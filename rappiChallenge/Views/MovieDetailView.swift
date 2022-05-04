@@ -1,22 +1,33 @@
 //
 //  MovieDetailView.swift
-//  SwiftUIMovieDb
+//  rappiChallenge
 //
-//  Created by Alfian Losari on 24/05/20.
-//  Copyright © 2020 Alfian Losari. All rights reserved.
+//  Created by Gustavo Molluso on 03/05/2022.
 //
 
 import SwiftUI
 
 struct MovieDetailView: View {
-    
     let movieId: Int
-    @ObservedObject private var movieDetailState = MovieDetailState()
     
+    @ObservedObject var movieDetailState: MovieDetailState
+    init(movieId: Int) {
+        self.movieId = movieId
+        self._movieDetailState = ObservedObject(wrappedValue: MovieDetailState())
+    }
+    
+//    @ObservedObject private var movieDetailState = MovieDetailState()
+    
+    
+  
+  
     var body: some View {
         ZStack {
             LoadingView(isLoading: self.movieDetailState.isLoading, error: self.movieDetailState.error) {
-                self.movieDetailState.loadMovie(id: self.movieId)
+                Task {
+                    await self.movieDetailState.loadMovie(id: self.movieId)
+                }
+                
             }
             
             if movieDetailState.movie != nil {
@@ -26,7 +37,10 @@ struct MovieDetailView: View {
         }
         .navigationBarTitle(movieDetailState.movie?.title ?? "")
         .onAppear {
-            self.movieDetailState.loadMovie(id: self.movieId)
+            Task {
+                await  self.movieDetailState.loadMovie(id: self.movieId)
+            }
+           
         }
     }
 }

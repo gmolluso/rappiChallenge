@@ -1,13 +1,13 @@
 //
 //  MovieDetailState.swift
-//  SwiftUIMovieDb
+//  rappiChallenge
 //
-//  Created by Alfian Losari on 24/05/20.
-//  Copyright © 2020 Alfian Losari. All rights reserved.
+//  Created by Gustavo Molluso on 03/05/2022.
 //
 
 import SwiftUI
 
+@MainActor
 class MovieDetailState: ObservableObject {
     
     private let movieService: MovieService
@@ -19,19 +19,17 @@ class MovieDetailState: ObservableObject {
         self.movieService = movieService
     }
     
-    func loadMovie(id: Int) {
+    func loadMovie(id: Int) async {
         self.movie = nil
-        self.isLoading = false
-        self.movieService.fetchMovie(id: id) {[weak self] (result) in
-            guard let self = self else { return }
-            
+        self.isLoading = true
+        
+        do{
+            let movie = try await self.movieService.fetchMovie(id: id)
+            self.movie = movie
             self.isLoading = false
-            switch result {
-            case .success(let movie):
-                self.movie = movie
-            case .failure(let error):
-                self.error = error as NSError
-            }
+        }catch {
+            self.isLoading = false
+            self.error = error as NSError
         }
     }
 }

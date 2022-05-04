@@ -1,16 +1,20 @@
 //
 //  MovieSearchView.swift
-//  SwiftUIMovieDb
+//  rappiChallenge
 //
-//  Created by Alfian Losari on 24/05/20.
-//  Copyright © 2020 Alfian Losari. All rights reserved.
+//  Created by Gustavo Molluso on 03/05/2022.
 //
 
 import SwiftUI
 
 struct MovieSearchView: View {
     
-    @ObservedObject var movieSearchState = MovieSearchState()
+    @ObservedObject var movieSearchState: MovieSearchState
+    init() {
+        self._movieSearchState = ObservedObject(wrappedValue: MovieSearchState())
+    }
+    
+    
     
     var body: some View {
         NavigationView {
@@ -19,7 +23,9 @@ struct MovieSearchView: View {
 //                    .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
                 
                 LoadingView(isLoading: self.movieSearchState.isLoading, error: self.movieSearchState.error) {
-                    self.movieSearchState.search(query: self.movieSearchState.query)
+                    Task {
+                        await self.movieSearchState.search(query: self.movieSearchState.query)
+                    }
                 }
                 
                 if self.movieSearchState.movies != nil {
