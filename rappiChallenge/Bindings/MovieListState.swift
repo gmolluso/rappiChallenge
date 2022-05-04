@@ -23,6 +23,16 @@ class MovieListState: ObservableObject {
     func loadMovies(with endpoint: MovieListEndpoint) async {
         self.movies = nil
         self.isLoading = true
+        if NetworkManager().isConnected != true {
+            switch endpoint {
+            case .upcoming:
+                self.movies = Movie.offlineUpcomigMovies
+            case .topRated:
+                self.movies = Movie.offlineTopRatedMovies
+            case .popular:
+                self.movies = Movie.offlinePopularMovies
+            }
+        }
         
         do{
             let movies = try await movieService.fetchMovies(from: endpoint)

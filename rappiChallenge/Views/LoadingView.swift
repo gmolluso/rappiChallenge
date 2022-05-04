@@ -27,6 +27,8 @@ struct LoadingView: View {
                 HStack {
                     Spacer()
                     VStack(spacing: 4) {
+//MARK: No Image
+                        
                         Text(error!.localizedDescription).font(.headline)
                         if self.retryAction != nil {
                             Button(action: self.retryAction!) {

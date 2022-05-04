@@ -18,7 +18,7 @@ struct MovieListView: View {
         self._upcomingState = ObservedObject(wrappedValue: MovieListState())
         self._topRatedState = ObservedObject(wrappedValue: MovieListState())
         self._popularState = ObservedObject(wrappedValue: MovieListState())
-        
+
         self._movieSearchState = ObservedObject(wrappedValue: MovieSearchState())
     }
     

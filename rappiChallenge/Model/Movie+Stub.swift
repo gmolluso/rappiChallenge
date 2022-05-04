@@ -10,7 +10,7 @@ import Foundation
 extension Movie {
     
     static var stubbedMovies: [Movie] {
-        let response: MovieResponse? = try? Bundle.main.loadAndDecodeJSON(filename: "movie_list")
+        let response: MovieResponse? = try? Bundle.main.loadAndDecodeJSON(filename: "popular")
         return response!.results
     }
     
@@ -18,6 +18,18 @@ extension Movie {
         stubbedMovies[0]
     }
     
+    static var offlinePopularMovies: [Movie] {
+        let response: MovieResponse? = try? Bundle.main.loadAndDecodeJSON(filename: "popular")
+        return response!.results
+    }
+    static var offlineTopRatedMovies: [Movie] {
+        let response: MovieResponse? = try? Bundle.main.loadAndDecodeJSON(filename: "topRated")
+        return response!.results
+    }
+    static var offlineUpcomigMovies: [Movie] {
+        let response: MovieResponse? = try? Bundle.main.loadAndDecodeJSON(filename: "upcoming")
+        return response!.results
+    }
 }
 
 extension Bundle {
