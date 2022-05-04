@@ -9,8 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TabView {
+            MovieListView()
+                .tabItem{ Label("Movies", systemImage: "film")}
+                .tag(0)
+            MovieSearchView() 
+                .tabItem{Label("Search", systemImage: "magnifyingglass")}
+                .tag(1)
+        }
 //        FIXME: Todas las clases States las podemos pasar a una unica con las 3 funciones
 //        FIXME: Cambiar Nombre
 //        FIXME: Cambiar fuentes y agregar algun overlay
