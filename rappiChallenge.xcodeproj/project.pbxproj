@@ -59,6 +59,10 @@
 		F86F28152822AC0800732E44 /* upcoming.json in Resources */ = {isa = PBXBuildFile; fileRef = F86F28132822AC0800732E44 /* upcoming.json */; };
 		F86F28162822AC0800732E44 /* topRated.json in Resources */ = {isa = PBXBuildFile; fileRef = F86F28142822AC0800732E44 /* topRated.json */; };
 		F86F28182822AC5F00732E44 /* popular.json in Resources */ = {isa = PBXBuildFile; fileRef = F86F28172822AC5F00732E44 /* popular.json */; };
+		F894B8622822F20200C568F9 /* ImageLoaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894B8612822F20200C568F9 /* ImageLoaderTest.swift */; };
+		F894B8662822FD6A00C568F9 /* MovieTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894B8652822FD6A00C568F9 /* MovieTest.swift */; };
+		F894B8682823212000C568F9 /* MovieListStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894B8672823212000C568F9 /* MovieListStateTest.swift */; };
+		F894B86C282329D500C568F9 /* MovieSearchStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894B86B282329D500C568F9 /* MovieSearchStateTest.swift */; };
 		F8CB8BC2281ABCB7009A0E48 /* rappiChallengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CB8BC1281ABCB7009A0E48 /* rappiChallengeApp.swift */; };
 		F8CB8BC4281ABCB7009A0E48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CB8BC3281ABCB7009A0E48 /* ContentView.swift */; };
 		F8CB8BC6281ABCB7009A0E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8CB8BC5281ABCB7009A0E48 /* Assets.xcassets */; };
@@ -107,6 +111,11 @@
 		F86F28132822AC0800732E44 /* upcoming.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = upcoming.json; sourceTree = "<group>"; };
 		F86F28142822AC0800732E44 /* topRated.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = topRated.json; sourceTree = "<group>"; };
 		F86F28172822AC5F00732E44 /* popular.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = popular.json; sourceTree = "<group>"; };
+		F894B8612822F20200C568F9 /* ImageLoaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderTest.swift; sourceTree = "<group>"; };
+		F894B8652822FD6A00C568F9 /* MovieTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTest.swift; sourceTree = "<group>"; };
+		F894B8672823212000C568F9 /* MovieListStateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListStateTest.swift; sourceTree = "<group>"; };
+		F894B86B282329D500C568F9 /* MovieSearchStateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchStateTest.swift; sourceTree = "<group>"; };
+		F894B86D28233CA100C568F9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F8CB8BBE281ABCB7009A0E48 /* rappiChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rappiChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8CB8BC1281ABCB7009A0E48 /* rappiChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rappiChallengeApp.swift; sourceTree = "<group>"; };
 		F8CB8BC3281ABCB7009A0E48 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -202,6 +211,7 @@
 		F8CB8BB5281ABCB7009A0E48 = {
 			isa = PBXGroup;
 			children = (
+				F894B86D28233CA100C568F9 /* README.md */,
 				F8CB8BC0281ABCB7009A0E48 /* rappiChallenge */,
 				F8CB8BD1281ABCB8009A0E48 /* rappiChallengeTests */,
 				F8CB8BDB281ABCB8009A0E48 /* rappiChallengeUITests */,
@@ -248,6 +258,10 @@
 			isa = PBXGroup;
 			children = (
 				F8CB8BD2281ABCB8009A0E48 /* rappiChallengeTests.swift */,
+				F894B8612822F20200C568F9 /* ImageLoaderTest.swift */,
+				F894B8652822FD6A00C568F9 /* MovieTest.swift */,
+				F894B8672823212000C568F9 /* MovieListStateTest.swift */,
+				F894B86B282329D500C568F9 /* MovieSearchStateTest.swift */,
 			);
 			path = rappiChallengeTests;
 			sourceTree = "<group>";
@@ -427,13 +441,17 @@
 				F827F3972821A5CF00D0F0BF /* MovieDetailState.swift in Sources */,
 				F827F35C28219F1300D0F0BF /* Utils.swift in Sources */,
 				F827F38F2821A38300D0F0BF /* LoadingView.swift in Sources */,
+				F894B86C282329D500C568F9 /* MovieSearchStateTest.swift in Sources */,
 				F827F3872821A2F900D0F0BF /* MovieListView.swift in Sources */,
 				F827F38B2821A31400D0F0BF /* MovieListState.swift in Sources */,
+				F894B8662822FD6A00C568F9 /* MovieTest.swift in Sources */,
 				F827F35828219E2700D0F0BF /* MovieStore.swift in Sources */,
 				F827F39F2821B0BE00D0F0BF /* MovieSearchState.swift in Sources */,
 				F827F39B2821ABD800D0F0BF /* SafariView.swift in Sources */,
+				F894B8622822F20200C568F9 /* ImageLoaderTest.swift in Sources */,
 				F827F35528219E2700D0F0BF /* MovieService.swift in Sources */,
 				F827F3832821A25D00D0F0BF /* MovieThumbnailCarouselView.swift in Sources */,
+				F894B8682823212000C568F9 /* MovieListStateTest.swift in Sources */,
 				F827F34F28219D3C00D0F0BF /* Movie.swift in Sources */,
 				F8CB8BD3281ABCB8009A0E48 /* rappiChallengeTests.swift in Sources */,
 				F827F3A32821B0DE00D0F0BF /* MovieSearchView.swift in Sources */,

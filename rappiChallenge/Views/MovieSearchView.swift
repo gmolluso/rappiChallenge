@@ -46,6 +46,7 @@ struct MovieSearchView: View {
             }
             .navigationBarTitle("Search")
         }
+        .navigationViewStyle(.stack)
     }
 }
 

@@ -11,15 +11,13 @@ struct MovieListView: View {
     @ObservedObject private var upcomingState: MovieListState
     @ObservedObject private var topRatedState: MovieListState
     @ObservedObject private var popularState: MovieListState
-//    MARK: Search bar
-    @ObservedObject private var movieSearchState: MovieSearchState
+
     
     init() {
         self._upcomingState = ObservedObject(wrappedValue: MovieListState())
         self._topRatedState = ObservedObject(wrappedValue: MovieListState())
         self._popularState = ObservedObject(wrappedValue: MovieListState())
 
-        self._movieSearchState = ObservedObject(wrappedValue: MovieSearchState())
     }
     
     var body: some View {
@@ -70,10 +68,10 @@ struct MovieListView: View {
                 .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 16, trailing: 0))
                 .listRowSeparator(.hidden)
             }
-            .searchable(text: self.$movieSearchState.query)
             .listStyle(.plain)
             .navigationBarTitle("Rappi Challenge")
         }
+        .navigationViewStyle(.stack)
         .onAppear {
             Task {
                 await self.upcomingState.loadMovies(with: .upcoming)
